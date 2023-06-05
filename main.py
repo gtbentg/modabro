@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 
-# Create a new Pyrogram client
+from pyrogram.types import InputMediaPhoto
 
 API_ID = "15428219"
 
@@ -8,26 +8,32 @@ API_HASH = "0042e5b26181a1e95ca40a7f7c51eaa7"
 
 BOT_TOKEN = "5507296374:AAHzdrj_nru8XQbNtRSAraVQ3eJd6r3HIC4"
 
-app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+app = Client("my_bot_token", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-# Register a message handler
+@app.on_message(filters.photo)
 
-@app.on_message(filters.text)
+def bold_caption(client, message):
 
-async def make_text_bold(client, message):
+    # Get the caption of the photo
 
-    # Get the original text
+    caption = message.caption
 
-    text = message.text
+    # Check if the caption is not empty
 
-    # Format the text by making it bold
+    if caption:
 
-    formatted_text = f"<b>{text}</b>"
+        # Add bold formatting to the caption text
 
-    # Reply to the message with the formatted text
+        bold_caption = f"<b>{caption}</b>"
 
-    await message.reply_text(formatted_text, parse_mode="HTML")
+        # Replace the original caption with the bold caption
 
-# Start the bot
-print("okkkkk")
+        message.caption = bold_caption
+
+        # Send the photo with the updated caption
+
+        client.send_photo(chat_id=message.chat.id, photo=message.photo.file_id, caption=bold_caption)
+
+print("okkk")
+
 app.run()
