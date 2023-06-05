@@ -1,3 +1,5 @@
+import time
+
 from pyrogram import Client, filters
 
 from pyrogram.types import InputMediaPhoto
@@ -12,7 +14,7 @@ app = Client("my_bot_token", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOK
 
 @app.on_message(filters.photo)
 
-def bold_caption(client, message):
+def delay_bold_caption(client, message):
 
     # Get the caption of the photo
 
@@ -21,6 +23,10 @@ def bold_caption(client, message):
     # Check if the caption is not empty
 
     if caption:
+
+        # Delay the bolding function for 3 seconds
+
+        time.sleep(3)
 
         # Add bold formatting to the caption text
 
@@ -34,6 +40,6 @@ def bold_caption(client, message):
 
         client.send_photo(chat_id=message.chat.id, photo=message.photo.file_id, caption=bold_caption)
 
-print("okkk")
+print("mrrrrr ready")
 
 app.run()
