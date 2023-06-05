@@ -44,7 +44,7 @@ async def process_message(client, message: Message):
 
         caption=formatted_caption,
 
-        parse_mode=HTML
+        parse_mode="html"
 
     )
 
