@@ -26,7 +26,7 @@ def delay_bold_caption(client, message):
 
         # Delay the bolding function for 3 seconds
 
-        time.sleep(3)
+        time.sleep(5)
 
         # Add bold formatting to the caption text
 
