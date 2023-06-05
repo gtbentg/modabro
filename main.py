@@ -1,50 +1,47 @@
-from telegram import Bot, Update, ParseMode
+from pyrogram import Client, filters
 
-from telegram.ext import Updater, MessageHandler, Filters
+from pyrogram.types import Message
 
 # Initialize the bot
 
-bot = Bot(token="5507296374:AAHzdrj_nru8XQbNtRSAraVQ3eJd6r3HIC4")
+API_ID = "15428219"
+API_HASH = "0042e5b26181a1e95ca40a7f7c51eaa7"
+BOT_TOKEN = "5507296374:AAHzdrj_nru8XQbNtRSAraVQ3eJd6r3HIC4"
 
-# Process messages with a photo and caption
+bot = Client("bold_caption_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-def process_message(update: Update, context):
+# Format the caption by making all text bold
 
-    message = update.effective_message
+def format_caption(caption):
 
-    if message.photo and message.caption:
+    formatted_caption = f"**{caption}**"
 
-        caption = message.caption
+    return formatted_caption
 
-        # Format the caption by making all text bold
+# Process photo messages with a caption
 
-        formatted_caption = f"<b>{caption}</b>"
+@bot.on_message(filters.photo & filters.caption)
 
-        # Reply to the message with the formatted caption
+async def process_photo(client, message: Message):
 
-        message.reply_photo(
+    # Get the photo caption
 
-            photo=message.photo[-1].file_id,
+    caption = message.caption
 
-            caption=formatted_caption,
+    # Format the caption by making all text bold
 
-            parse_mode=ParseMode.HTML
+    formatted_caption = format_caption(caption)
 
-        )
+    # Edit the message caption with the formatted caption
 
-# Set up the Telegram bot
+    await message.edit_caption(
 
-updater = Updater(bot=bot, use_context=True)
+        caption=formatted_caption,
 
-dispatcher = updater.dispatcher
+        parse_mode="markdown"
 
-# Register the message handler
+    )
 
-dispatcher.add_handler(MessageHandler(Filters.photo & Filters.caption, process_message))
+# Run the bot
 
-# Start the bot
-
-updater.start_polling()
-
-updater.idle()
-
+bot.run()
