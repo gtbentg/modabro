@@ -4,7 +4,7 @@ from telegram.ext import Updater, MessageHandler, Filters
 
 # Initialize the bot
 
-bot = Bot(token="YOUR_BOT_TOKEN")
+bot = Bot(token="5507296374:AAHzdrj_nru8XQbNtRSAraVQ3eJd6r3HIC4")
 
 # Process messages with a photo and caption
 
