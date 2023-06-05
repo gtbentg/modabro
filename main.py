@@ -16,7 +16,7 @@ bot = Client("caption_formatting_bot", api_id=API_ID, api_hash=API_HASH, bot_tok
 
 def format_caption(caption):
 
-    bold_caption = f"<b>{caption}</b>"
+    bold_caption = f"*{caption}*"
 
     return bold_caption
 
@@ -42,13 +42,10 @@ async def process_message(client, message: Message):
 
         caption=formatted_caption,
 
-        parse_mode="HTML"
+        parse_mode="MarkdownV2"
 
     )
 
 # Run the bot
-
-print("okk sett")
-
+print("started.... ")
 bot.run()
-
