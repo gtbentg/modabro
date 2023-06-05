@@ -14,7 +14,7 @@ bot = Client("bold_caption_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT
 
 def format_caption(caption):
 
-    formatted_caption = f"**{caption}**"
+    formatted_caption = f"*{caption}*"
 
     return formatted_caption
 
@@ -38,7 +38,7 @@ async def process_photo(client, message: Message):
 
         caption=formatted_caption,
 
-        parse_mode="markdown"
+        parse_mode="text"
 
     )
 
