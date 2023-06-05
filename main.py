@@ -12,7 +12,7 @@ API_HASH = "0042e5b26181a1e95ca40a7f7c51eaa7"
 
 BOT_TOKEN = "5507296374:AAG6NrqWdRGwVqPmMPDJLMvuieXUsJlI8p8"
 
-bot = Client("caption_formatting_bot", api_id=BOT_TOKEN, api_hash=API_HASH, bot_token=BOT_TOKEN)
+bot = Client("caption_formatting_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 # Format the caption by making all text bold
 
