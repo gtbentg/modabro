@@ -1,16 +1,33 @@
-AAHzdrj_nru8XQbNtRSAraVQ3eJd6r3HIC4"
+from pyrogram import Client, filters
 
-bot = Client("bold_caption_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+# Create a new Pyrogram client
 
-# Format the caption by making all text bold
+API_ID = "15428219"
 
-def format_caption(caption):
+API_HASH = "0042e5b26181a1e95ca40a7f7c51eaa7"
 
-    formatted_caption = f"*{caption}*"
+BOT_TOKEN = "5507296374:AAHzdrj_nru8XQbNtRSAraVQ3eJd6r3HIC4"
 
-    return formatted_caption
+app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-# Process photo messages with a caption
+# Register a message handler
 
-@bot.on_message(filters.photo & filters.caption)
+@app.on_message(filters.text)
 
+async def make_text_bold(client, message):
+
+    # Get the original text
+
+    text = message.text
+
+    # Format the text by making it bold
+
+    formatted_text = f"<b>{text}</b>"
+
+    # Reply to the message with the formatted text
+
+    await message.reply_text(formatted_text, parse_mode="HTML")
+
+# Start the bot
+
+app.run()
