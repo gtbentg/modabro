@@ -42,7 +42,7 @@ async def process_message(client, message: Message):
 
         caption=formatted_caption,
 
-        parse_mode="MarkdownV2"
+        parse_mode="Markdown"
 
     )
 
