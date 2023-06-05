@@ -2,7 +2,9 @@ from pyrogram import Client, filters
 
 from pyrogram.types import Message
 
-# Initialize the bot
+import html
+
+# Initialize the botbot
 
 API_ID = "15428219"
 
@@ -10,15 +12,15 @@ API_HASH = "0042e5b26181a1e95ca40a7f7c51eaa7"
 
 BOT_TOKEN = "5507296374:AAG6NrqWdRGwVqPmMPDJLMvuieXUsJlI8p8"
 
-bot = Client("caption_formatting_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+bot = Client("caption_formatting_bot", api_id=BOT_TOKEN, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 # Format the caption by making all text bold
 
 def format_caption(caption):
 
-    bold_caption = f"*{caption}*"
+    formatted_caption = f"<b>{html.escape(caption)}</b>"
 
-    return bold_caption
+    return formatted_caption
 
 # Process messages with a photo and caption
 
@@ -42,10 +44,11 @@ async def process_message(client, message: Message):
 
         caption=formatted_caption,
 
-        parse_mode="Markdown"
+        parse_mode="HTML"
 
     )
 
 # Run the bot
-print("started.... ")
+print("starteddd")
 bot.run()
+
