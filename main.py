@@ -29,5 +29,5 @@ async def make_text_bold(client, message):
     await message.reply_text(formatted_text, parse_mode="HTML")
 
 # Start the bot
-
+print("okkkkk")
 app.run()
