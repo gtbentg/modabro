@@ -1,46 +1,57 @@
-import time
-
-import re
-
 from pyrogram import Client, filters
 
-from pyrogram.types import InputMediaPhoto
+from pyrogram.types import Message
+
+# Initialize the Pyrogram client
 
 API_ID = "15428219"
 
 API_HASH = "0042e5b26181a1e95ca40a7f7c51eaa7"
 
-BOT_TOKEN = "5507296374:AAHzdrj_nru8XQbNtRSAraVQ3eJd6r3HIC4"
+BOT_TOKEN = "5492441001:AAGONuW8_PIPFewaLt9V0sOZjIhMXjr0LrQ"
 
-app = Client("my_bot_token", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-@app.on_message(filters.photo)
+# Define the private channels to forward messages from
 
-def bold_and_replace_links(client, message):
+private_channels = ["-1001822069031", "-1001630728036"]
 
-    # Get the caption of the photo
+# Define the public channel to forward messages to
 
-    caption = message.caption
+public_channel = "-1001861161044"
 
-    # Check if the caption is not empty
+# Define a filter to only forward messages with media (photos, videos, documents, etc.)
 
-    if caption:
+media_filter = filters.private & (filters.photo | filters.video | filters.document)
 
-        # Replace the link with the new link
+# Define a function to forward the message to the public channel
 
-        new_caption = re.sub("https?://\S+", "https://t.me/+9CKK8DlZlgUxOTE9", caption)
+async def forward_to_public_channel(client: Client, message: Message):
 
-        # Add bold formatting to the caption text
+    # Get the chat ID of the public channel
 
-        bold_caption = f"<b>{new_caption}</b>"
+    public_chat = await client.get_chat(public_channel)
 
-        # Replace the original caption with the bold caption
+    public_chat_id = public_chat.id
 
-        message.caption = bold_caption
+    
 
-        # Send the photo with the updated caption
+    # Forward the message to the public channel
 
-        client.send_photo(chat_id=message.chat.id, photo=message.photo.file_id, caption=bold_caption)
+    await message.forward(public_chat_id)
 
-print("startedddd.... ")        
+# Add a handler for messages in the private channels
+
+@app.on_message(filters.chat(private_channels) & media_filter)
+
+async def handle_private_message(client: Client, message: Message):
+
+    # Forward the message to the public channel
+
+    await forward_to_public_channel(client, message)
+
+# Start the bot
+
+print("readyyyy")
+
 app.run()
