@@ -1,5 +1,7 @@
 import time
 
+import re
+
 from pyrogram import Client, filters
 
 from pyrogram.types import InputMediaPhoto
@@ -14,7 +16,7 @@ app = Client("my_bot_token", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOK
 
 @app.on_message(filters.photo)
 
-def delay_bold_caption(client, message):
+def bold_and_replace_links(client, message):
 
     # Get the caption of the photo
 
@@ -24,13 +26,13 @@ def delay_bold_caption(client, message):
 
     if caption:
 
-        # Delay the bolding function for 3 seconds
+        # Replace the link with the new link
 
-        time.sleep(5)
+        new_caption = re.sub(r"https://t.me/\+\w+", "https://t.me/+9CKK8DlZlgUxOTE9", caption)
 
         # Add bold formatting to the caption text
 
-        bold_caption = f"<b>{caption}</b>"
+        bold_caption = f"<b>{new_caption}</b>"
 
         # Replace the original caption with the bold caption
 
@@ -40,6 +42,5 @@ def delay_bold_caption(client, message):
 
         client.send_photo(chat_id=message.chat.id, photo=message.photo.file_id, caption=bold_caption)
 
-print("mrrrrr ready")
-
+print("startedddd.... ")        
 app.run()
