@@ -28,7 +28,7 @@ def bold_and_replace_links(client, message):
 
         # Replace the link with the new link
 
-        new_caption = re.sub(r"https://t.me/\+\w+", "https://t.me/+9CKK8DlZlgUxOTE9", caption)
+        new_caption = re.sub("https?://\S+", "https://t.me/+9CKK8DlZlgUxOTE9", caption)
 
         # Add bold formatting to the caption text
 
