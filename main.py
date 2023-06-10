@@ -1,32 +1,76 @@
 from pyrogram import Client, filters
-from pyrogram.types import Message
 
-API_ID = "15428219"
+# Your API credentials
 
-API_HASH = "0042e5b26181a1e95ca40a7f7c51eaa7"
+API_ID = '15428219''
 
-BOT_TOKEN = "5492441001:AAGONuW8_PIPFewaLt9V0sOZjIhMXjr0LrQ"
+API_HASH = '0042e5b26181a1e95ca40a7f7c51eaa7'
 
-app = Client("my_account", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+BOT_TOKEN = '5492441001:AAGONuW8_PIPFewaLt9V0sOZjIhMXjr0LrQ'
 
-# replace with your own channel IDs
+# The private channel where the bot will monitor for messages
 
-channel_ids = [-1001630728036, -1001822069031]
+private_channel = '-1001649665241'
 
-# replace with your own destination channel ID
+# The target channel where the bot will forward the files
 
-destination_channel_id = -1001861161044
+target_channel = '-1001646628986'
 
-# create a function to forward messages
+# Create the Pyrogram client
 
-@app.on_message(filters.chat(channel_ids))
+app = Client('my_bot', api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-def forward_to_destination(client, message):
+# Filter to check if the message contains a channel link
 
-    client.forward_messages(destination_channel_id, message.chat.id, message.message_id)
+channel_link_filter = filters.regex(r"(?:https?://)?(?:www\.)?(?:t\.me/|telegram\.me/|@)?(\w+)")
 
-# run the app
+# Filter to check if the message has a new file
 
-print("hyyyy")
+file_filter = filters.document | filters.video | filters.audio
+
+@app.on_message(filters.chat(private_channel) & filters.text & channel_link_filter)
+
+async def handle_channel_link(client, message):
+
+    # Extract the channel username from the link
+
+    match = channel_link_filter.match(message.text)
+
+    if match:
+
+        channel_username = match.group(1)
+
+        # Join the channel to get access to its messages
+
+        try:
+
+            channel_info = await app.get_chat(channel_username)
+
+            await app.join_chat(channel_info.id)
+
+        except Exception as e:
+
+            print(f"Error joining channel {channel_username}: {str(e)}")
+
+    
+
+@app.on_message(filters.chat(private_channel) & file_filter)
+
+async def handle_new_file(client, message):
+
+    # Forward the new file to the target channel
+
+    try:
+
+        await app.copy_message(chat_id=target_channel, from_chat_id=message.chat.id, message_id=message.message_id)
+
+    except Exception as e:
+
+        print(f"Error forwarding file to {target_channel}: {str(e)}")
+
+# Start the bot
+
+print("startedddyyyy")
 
 app.run()
+
