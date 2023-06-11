@@ -13,22 +13,32 @@ def get_new_releases():
         "https://imdb-api.com/en/API/TopRatedTV/" + API_KEY
 
     )
-    
-    print(response.content)  # Print the response content
-    
-    data = response.json()
 
-    new_releases = []
+    try:
 
-    for item in data['items']:
+        data = response.json()
 
-        title = item['title']
+        new_releases = []
 
-        release_date = item['year']
+        for item in data['items']:
 
-        new_releases.append((title, release_date))
+            title = item['title']
 
-    return new_releases
+            release_date = item['year']
+
+            new_releases.append((title, release_date))
+
+        return new_releases
+
+    except ValueError:
+
+        print("Error decoding response as JSON:")
+
+        print(response.content)
+
+        return []
+
+
 
 bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5310839293:AAE2IQxhx9kwVwbhxk9MBu85GM7-gHoSqGI")
 
