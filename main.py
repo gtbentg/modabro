@@ -3,8 +3,9 @@ from pyrogram import Client, filters
 import requests
 
 # Replace 'YOUR_BOT_TOKEN' with your actual bot token
-
-bot_token = '5310839293:AAE2IQxhx9kwVwbhxk9MBu85GM7-gHoSqGI'
+API_ID = '15428219'
+API_HASH = '0042e5b26181a1e95ca40a7f7c51eaa7'
+BOT_TOKEN = '5310839293:AAE2IQxhx9kwVwbhxk9MBu85GM7-gHoSqGI'
 
 # Replace 'YOUR_IMDB_API_KEY' with your actual IMDb API key
 
@@ -12,7 +13,7 @@ imdb_api_key = 'k_aaaaaaaa'
 
 # Create the Pyrogram client
 
-app = Client("imdb_bot", bot_token=bot_token)
+app = Client("imdb_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 # Define a function to send a message with a photo
 
