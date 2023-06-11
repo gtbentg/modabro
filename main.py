@@ -8,7 +8,7 @@ import time
 
 def get_movie_details(title):
 
-    response = requests.get(f"https://imdb-api.com/en/API/SearchMovie/96b11f45/{title}")
+    response = requests.get(f"https://imdb-api.com/en/API/SearchMovie/k_ouua140i/{title}")
 
     data = response.json()
 
@@ -18,7 +18,7 @@ def get_movie_details(title):
 
 def get_movie_poster(imdb_id):
 
-    response = requests.get(f"https://imdb-api.com/en/API/Posters/96b11f45/{imdb_id}")
+    response = requests.get(f"https://imdb-api.com/en/API/Posters/k_ouua140i/{imdb_id}")
 
     data = response.json()
 
