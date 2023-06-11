@@ -4,13 +4,12 @@ import requests
 
 import time
 
-API_KEY = "k_ouua140i"
 
 def get_new_releases():
 
     response = requests.get(
 
-        "https://imdb-api.com/en/API/TopRatedTV/" + API_KEY
+        "https://imdb-api.com/en/API/TopRatedTV/k_ouua140i"
 
     )
 
