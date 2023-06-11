@@ -9,7 +9,7 @@ BOT_TOKEN = '5310839293:AAE2IQxhx9kwVwbhxk9MBu85GM7-gHoSqGI'
 
 # Replace 'YOUR_IMDB_API_KEY' with your actual IMDb API key
 
-imdb_api_key = 'k_aaaaaaaa'
+imdb_api_key = 'k_ouua140i'
 
 # Create the Pyrogram client
 
