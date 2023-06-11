@@ -46,7 +46,7 @@ def send_updates():
 
             # Send the message with the photo
 
-            client.send_photo(chat_id='@my_channel', photo=image_data, caption=title)
+            client.send_photo(chat_id='@mbbbbss', photo=image_data, caption=title)
 
         elif item['type'] == 'tvSeries':
 
@@ -64,7 +64,7 @@ def send_updates():
 
             # Send the message with the photo
 
-            client.send_photo(chat_id='@my_channel', photo=image_data, caption=title)
+            client.send_photo(chat_id='@mbbbbss', photo=image_data, caption=title)
 
     
 # Run the client and send updates every hour
