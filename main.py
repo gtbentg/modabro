@@ -26,50 +26,47 @@ def send_updates():
 
     data = response.json()
 
-    # Extract the movie and series information
-
-    movies = data['items']['comingSoonMovies']
-
-    series = data['items']['comingSoonTvSeries']
-
     # Send the updates
 
-    for movie in movies:
+    for item in data['items']:
 
-        # Get the movie title and image URL
+        if item['type'] == 'movie':
 
-        title = movie['title']
+            # Get the movie title and image URL
 
-        image_url = movie['image']
+            title = item['title']
 
-        # Download the image
+            image_url = item['image']
 
-        response = requests.get(image_url)
+            # Download the image
 
-        image_data = response.content
+            response = requests.get(image_url)
 
-        # Send the message with the photo
+            image_data = response.content
 
-        client.send_photo(chat_id='@mbbbbss', photo=image_data, caption=title)
+            # Send the message with the photo
 
-    for serie in series:
+            client.send_photo(chat_id='@my_channel', photo=image_data, caption=title)
 
-        # Get the series title and image URL
+        elif item['type'] == 'tvSeries':
 
-        title = serie['title']
+            # Get the series title and image URL
 
-        image_url = serie['image']
+            title = item['title']
 
-        # Download the image
+            image_url = item['image']
 
-        response = requests.get(image_url)
+            # Download the image
 
-        image_data = response.content
+            response = requests.get(image_url)
 
-        # Send the message with the photo
+            image_data = response.content
 
-        client.send_photo(chat_id='@mbbbbss', photo=image_data, caption=title)
+            # Send the message with the photo
 
+            client.send_photo(chat_id='@my_channel', photo=image_data, caption=title)
+
+    
 # Run the client and send updates every hour
 
 with client:
