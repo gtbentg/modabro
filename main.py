@@ -39,7 +39,7 @@ def check_for_updates():
 
         # Check if the item is a movie or series
 
-        if item['titleType'] in ['movie', 'tvSeries']:
+        if 'titleType' in item and item['titleType'] in ['movie', 'tvSeries']:
 
             title = item['title']
 
