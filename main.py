@@ -46,7 +46,7 @@ async def handle_message(message, chat_id):
 
         for title, release_date in new_releases:
 
-            await message.reply(f"New release: {title} ({release_date})")
+            await message.reply_text(f"New release: {title} ({release_date})")
 
 print("okkk")
 bot.run()
