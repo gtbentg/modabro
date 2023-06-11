@@ -42,7 +42,7 @@ def get_new_releases():
 
         return []
 
-bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5310839293:AAET_Mg291vMOAXwKIORIVo5g9bAToruUek")
+bot = pyrogram.Client("my_bot", api_id="15428219", api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5310839293:AAET_Mg291vMOAXwKIORIVo5g9bAToruUek")
 
 @bot.on_message()
 
@@ -64,7 +64,7 @@ async def send_new_releases():
 
     for title, release_date in new_releases:
 
-        await bot.send_message(chat_id:"1653535224", text=f"New release: {title} ({release_date})")
+        await bot.send_message(chat_id="1653535224", text=f"New release: {title} ({release_date})")
 
     while True:
 
@@ -74,7 +74,7 @@ async def send_new_releases():
 
         for title, release_date in new_releases:
 
-            await bot.send_message(chat_id:"1653535224", text=f"New release: {title} ({release_date})")
+            await bot.send_message(chat_id="1653535224", text=f"New release: {title} ({release_date})")
 
 bot.run(send_new_releases())
 
