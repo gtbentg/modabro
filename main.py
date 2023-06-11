@@ -2,6 +2,8 @@ import pyrogram
 
 import requests
 
+import time
+
 API_KEY = "k_ouua140i"
 
 def get_new_releases():
@@ -40,13 +42,25 @@ async def handle_message(client, message):
 
         )
 
+async def send_new_releases():
+
+    new_releases = get_new_releases()
+
+    for title, release_date in new_releases:
+
+        await bot.send_message(chat_id="YOUR_CHAT_ID", text=f"New release: {title} ({release_date})")
+
+    while True:
+
+        time.sleep(86400)  # Wait for 24 hours
+
         new_releases = get_new_releases()
 
         for title, release_date in new_releases:
 
-            await message.reply_text(f"New release: {title} ({release_date})")
+            await bot.send_message(chat_id="YOUR_CHAT_ID", text=f"New release: {title} ({release_date})")
 
 print("okkk")
 
-bot.run()
+bot.run(send_new_releases())
 
