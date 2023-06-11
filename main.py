@@ -48,4 +48,5 @@ async def handle_message(message):
 
             await message.reply(f"New release: {title} ({release_date})")
 
+print("okkk")
 bot.run()
