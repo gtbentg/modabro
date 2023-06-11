@@ -6,7 +6,7 @@ import time
 
 def get_new_releases():
 
-    response = requests.get("http://www.omdbapi.com/?s=new&type=movie&apikey=YOUR_API_KEY")
+    response = requests.get("http://www.omdbapi.com/?s=new&type=movie&apikey=96b11f45")
 
     try:
 
@@ -42,7 +42,7 @@ def get_new_releases():
 
         return []
 
-bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="YOUR_BOT_TOKEN")
+bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5310839293:AAFf3gugWXvL3_vBpumyxcaC0VovBZ-TbuY")
 
 @bot.on_message()
 
