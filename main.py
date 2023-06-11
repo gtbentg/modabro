@@ -60,7 +60,7 @@ def get_movie_poster(movie_title):
 
 def get_new_releases():
 
-    response = requests.get("http://www.omdbapi.com/?s=new&type=movie&apikey=YOUR_OMDB_API_KEY")
+    response = requests.get("http://www.omdbapi.com/?s=new&type=movie&apikey=96b11f45")
 
     try:
 
