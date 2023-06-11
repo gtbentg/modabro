@@ -49,7 +49,7 @@ def check_for_updates():
 
             # Replace 'YOUR_CHAT_ID' with the chat ID of the recipient
 
-            chat_id = 'YOUR_CHAT_ID'
+            chat_id = '1653535224'
 
             # Send the message with the photo
 
@@ -72,6 +72,6 @@ def check_updates_command(client, message):
     check_for_updates()
 
 # Start the bot
-
+print("start")
 app.run()
 
