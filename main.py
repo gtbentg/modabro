@@ -13,7 +13,9 @@ def get_new_releases():
         "https://imdb-api.com/en/API/TopRatedTV/" + API_KEY
 
     )
-
+    
+    print(response.content)  # Print the response content
+    
     data = response.json()
 
     new_releases = []
