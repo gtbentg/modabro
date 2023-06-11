@@ -98,7 +98,7 @@ def get_new_releases():
 
 # Pyrogram bot client
 
-bot = pyrogram.Client("my_bot", api_id="YOUR_API_ID", api_hash="YOUR_API_HASH", bot_token="YOU_TOKEN")
+bot = pyrogram.Client("my_bot", api_id="YOUR_API_ID", api_hash="YOUR_API_HASH", bot_token="5310839293:AAET_Mg291vMOAXwKIORIVo5g9bAToruUek")
 
 @bot.on_message()
 
