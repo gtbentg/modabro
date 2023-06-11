@@ -6,23 +6,33 @@ import time
 
 def get_new_releases():
 
-    response = requests.get("https://imdb-api.com/en/API/TopRatedTV/k_ouua140i")
+    response = requests.get("http://www.omdbapi.com/?s=new&type=movie&apikey=YOUR_API_KEY")
 
     try:
 
         data = response.json()
 
-        new_releases = []
+        if data['Response'] == 'True':
 
-        for item in data['items']:
+            new_releases = []
 
-            title = item['title']
+            for item in data['Search']:
 
-            release_date = item['year']
+                title = item['Title']
 
-            new_releases.append((title, release_date))
+                release_date = item['Year']
 
-        return new_releases
+                new_releases.append((title, release_date))
+
+            return new_releases
+
+        else:
+
+            print("Error retrieving new releases from the API:")
+
+            print(data['Error'])
+
+            return []
 
     except ValueError:
 
@@ -32,7 +42,7 @@ def get_new_releases():
 
         return []
 
-bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5310839293:AAFf3gugWXvL3_vBpumyxcaC0VovBZ-TbuY")
+bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="YOUR_BOT_TOKEN")
 
 @bot.on_message()
 
@@ -42,7 +52,7 @@ async def handle_message(client, message):
 
         await message.reply_text(
 
-            "Welcome to the new movie and series release bot! I will send you a list of new releases every day."
+            "Welcome to the new movie release bot! I will send you a list of new releases every day."
 
         )
 
