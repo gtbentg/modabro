@@ -32,7 +32,7 @@ bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40
 
 @bot.on_message()
 
-async def handle_message(message, chat_id):
+async def handle_message(client, message):
 
     if message.text == "/start":
 
