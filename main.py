@@ -54,7 +54,7 @@ async def send_new_releases():
 
     for title, release_date in new_releases:
 
-        await bot.send_message(chat_id="YOUR_CHAT_ID", text=f"New release: {title} ({release_date})")
+        await bot.send_message(chat_id="-1001649665241", text=f"New release: {title} ({release_date})")
 
     while True:
 
@@ -64,7 +64,7 @@ async def send_new_releases():
 
         for title, release_date in new_releases:
 
-            await bot.send_message(chat_id="YOUR_CHAT_ID", text=f"New release: {title} ({release_date})")
+            await bot.send_message(chat_id="-1001649665241", text=f"New release: {title} ({release_date})")
 
 bot.run(send_new_releases())
 
