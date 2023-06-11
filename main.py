@@ -2,8 +2,6 @@ import pyrogram
 
 import requests
 
-from bs4 import BeautifulSoup
-
 API_KEY = "k_ouua140i"
 
 def get_new_releases():
@@ -14,15 +12,15 @@ def get_new_releases():
 
     )
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    data = response.json()
 
     new_releases = []
 
-    for movie in soup.find_all("div", class_="lister-item mode-advanced"):
+    for item in data['items']:
 
-        title = movie.find("h3").text
+        title = item['title']
 
-        release_date = movie.find("span", class_="lister-item-year").text
+        release_date = item['year']
 
         new_releases.append((title, release_date))
 
@@ -49,4 +47,6 @@ async def handle_message(client, message):
             await message.reply_text(f"New release: {title} ({release_date})")
 
 print("okkk")
+
 bot.run()
+
