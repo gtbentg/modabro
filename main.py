@@ -4,30 +4,35 @@ import requests
 
 import time
 
+def get_new_releases(api_key):
 
-def get_new_releases():
+    url = f"http://www.omdbapi.com/?apikey={api_key}&s=new&type=series"
 
-    response = requests.get(
+    response = requests.get(url)
 
-        "https://imdb-api.com/en/API/TopRatedTV/k_ouua140i"
-
-    )
+    
 
     try:
 
         data = response.json()
 
-        new_releases = []
+        if data["Response"] == "True":
 
-        for item in data['items']:
+            new_releases = []
 
-            title = item['title']
+            for item in data['Search']:
 
-            release_date = item['year']
+                title = item['Title']
 
-            new_releases.append((title, release_date))
+                release_date = item['Year']
 
-        return new_releases
+                new_releases.append((title, release_date))
+
+            return new_releases
+
+        else:
+
+            print("No new releases found.")
 
     except ValueError:
 
@@ -35,9 +40,9 @@ def get_new_releases():
 
         print(response.content)
 
-        return []
+    
 
-
+    return []
 
 bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5310839293:AAE2IQxhx9kwVwbhxk9MBu85GM7-gHoSqGI")
 
@@ -53,9 +58,9 @@ async def handle_message(client, message):
 
         )
 
-async def send_new_releases():
+async def send_new_releases(api_key):
 
-    new_releases = get_new_releases()
+    new_releases = get_new_releases(api_key)
 
     for title, release_date in new_releases:
 
@@ -65,13 +70,15 @@ async def send_new_releases():
 
         time.sleep(86400)  # Wait for 24 hours
 
-        new_releases = get_new_releases()
+        new_releases = get_new_releases(api_key)
 
         for title, release_date in new_releases:
 
-            await bot.send_message(chat_id="YOUR_CHAT_ID", text=f"New release: {title} ({release_date})")
+            await bot.send_message(chat_id="1653535224", text=f"New release: {title} ({release_date})")
 
 print("okkk")
 
-bot.run(send_new_releases())
+api_key = "96b11f45"  # Replace with your actual API key from OMDb
+
+bot.run(send_new_releases(api_key))
 
