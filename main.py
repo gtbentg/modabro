@@ -42,7 +42,7 @@ def get_new_releases():
 
         return []
 
-bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5310839293:AAFf3g")
+bot = pyrogram.Client("my_bot", api_id=15428219, api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5310839293:AAET_Mg291vMOAXwKIORIVo5g9bAToruUek")
 
 @bot.on_message()
 
