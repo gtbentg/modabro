@@ -36,7 +36,7 @@ async def handle_message(message, chat_id):
 
     if message.text == "/start":
 
-        await message.reply(
+        await message.reply_text(
 
             "Welcome to the new movie and series release bot! I will send you a list of new releases every day."
 
