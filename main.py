@@ -34,7 +34,7 @@ def get_movie_poster(imdb_id):
 
 def get_new_releases():
 
-    response = requests.get("https://imdb-api.com/en/API/ComingSoonMovies/96b11f45")
+    response = requests.get("https://imdb-api.com/en/API/ComingSoon/k_ouua140i")
 
     try:
 
