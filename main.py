@@ -1,18 +1,4 @@
-import pyrogram
 
-import requests
-
-import time
-
-# Function to fetch movie details using IMDb API
-
-def get_movie_details(title):
-
-    response = requests.get(f"https://imdb-api.com/en/API/SearchMovie/k_ouua140i/{title}")
-
-    data = response.json()
-
-    return data
 
 # Function to fetch movie poster using IMDb API
 
