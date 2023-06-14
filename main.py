@@ -1,24 +1,48 @@
 from pyrogram import Client, filters
 
-# Create a new Telegram bot using the API token
+# Initialize the Pyrogram client
 
-bot = Client("my_bot", api_id="15428219", api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5507296374:AAFiZjhKFelrMNXXUoJe8EkjHvua5QeV2q0")
+API_ID = '15428219'
 
-@bot.on_message(filters.document)
+API_HASH = '0042e5b26181a1e95ca40a7f7c51eaa7'
 
-def delete_documents(bot, message):
+BOT_TOKEN = '5507296374:AAFiZjhKFelrMNXXUoJe8EkjHvua5QeV2q0'
 
-    caption = message.caption
+app = Client('file_caption_editor_bot', api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-    if caption:
+@app.on_message(filters.document)
 
-        updated_caption = caption.replace("=========== • ✠ • ===========\n✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz\n=========== • ✠ • ===========", "")
+def process_file_caption(client, message):
 
-        if updated_caption != caption:
-            
-            bot.edit_message_caption(chat_id=message.chat.id, message_id=message.message_id, caption=updated_caption)
+    # Check if the message is from a channel
 
-# Run the bot
-print("💝💝💝")
-bot.run()
+    if message.chat.type == 'channel':
+
+        caption = message.caption
+
+        if caption is not None:
+
+            # Check if the specific text is present in the caption
+
+            if "=========== • ✠ • ===========\n✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz\n=========== • ✠ • ===========" in caption:
+
+                # Remove the specific text from the caption
+
+                updated_caption = caption.replace("=========== • ✠ • ===========\n✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz\n=========== • ✠ • ===========", "")
+
+                # Edit the message caption
+
+                client.edit_message_caption(
+
+                    chat_id=message.chat.id,
+
+                    message_id=message.message_id,
+
+                    caption=updated_caption
+
+                )
+
+# Run the client
+print("❗️❗️")
+app.run()
 
