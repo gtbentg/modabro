@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 
 # Create a new Telegram bot using the API token
 
-bot = Client("my_bot", api_id=YOUR_API_ID, api_hash="YOUR_API_HASH", bot_token="YOUR_BOT_TOKEN")
+bot = Client("my_bot", api_id="15428219", api_hash="0042e5b26181a1e95ca40a7f7c51eaa7", bot_token="5507296374:AAHzdrj_nru8XQbNtRSAraVQ3eJd6r3HIC4")
 
 @bot.on_message(filters.document)
 
