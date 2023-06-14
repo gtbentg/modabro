@@ -21,6 +21,6 @@ def delete_documents(bot, message):
             bot.edit_message_caption(chat_id=message.chat.id, message_id=original_message_id, caption=updated_caption)
 
 # Run the bot
-
+print("💝💝💝")
 bot.run()
 
