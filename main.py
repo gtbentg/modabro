@@ -4,7 +4,7 @@ bot = pyrogram.Client("my_bot", api_id="15428219", api_hash="0042e5b26181a1e95ca
 
 @bot.on_message()
 
-async def handler(message):
+async def handler(bot, message):
 
     # Check if the message is a file with a caption
 
