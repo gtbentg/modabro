@@ -6,7 +6,7 @@ bot = pyrogram.Client(
 
     "my_bot",
 
-    api_id=15428219,
+    api_id="15428219",
 
     api_hash="0042e5b26181a1e95ca40a7f7c51eaa7",
 
