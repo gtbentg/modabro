@@ -28,11 +28,11 @@ async def handle_message(client, message):
 
     # Check if the message is a file with a caption
 
-    if message.document and message.document.file_caption:
+    if message.document and message.document.caption:
 
         # Get the caption of the file
 
-        caption = message.document.file_caption
+        caption = message.document.caption
 
         logging.info(f"Received file with caption: {caption}")
 
