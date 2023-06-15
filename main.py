@@ -17,7 +17,9 @@ client = pyrogram.Client(
     api_id=api_id,
 
     api_hash=api_hash,
+
     
+
     bot_token=bot_token
 
 )
@@ -46,11 +48,13 @@ async def handle_message(client, message):
 
         caption = replace_text(message.caption)
 
-        # Send the message back to the user
+        # Send the new caption along with the file
 
-        await message.reply(caption)
+        await message.reply_document(message.document, caption=caption)
 
 # Run the bot
+
 print("🙌🏻💝💝🙌🏻")
+
 client.run()
 
