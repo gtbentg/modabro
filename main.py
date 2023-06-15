@@ -28,7 +28,7 @@ async def handler(bot, message):
 
         # Remove the unwanted text from the caption
 
-        caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "<b>ᴛʜᴀɴᴋ yᴏᴜ ꜰᴏʀ ꜱᴜᴩᴩᴏʀᴛ</b>")
+        caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "ᴛʜᴀɴᴋ yᴏᴜ ꜰᴏʀ ꜱᴜᴩᴩᴏʀᴛ</b>")
 
         
 
