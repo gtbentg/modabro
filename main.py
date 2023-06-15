@@ -1,5 +1,11 @@
 import pyrogram
 
+import logging
+
+# Configure logging
+
+logging.basicConfig(level=logging.INFO)
+
 # Create a Pyrogram client
 
 bot = pyrogram.Client(
@@ -28,13 +34,17 @@ async def handle_message(client, message):
 
         caption = message.document.file_name
 
+        logging.info(f"Received file with caption: {caption}")
+
         # Check if the specific text is present in the caption
 
-        if "✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" in caption:
+        if "✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" in caption:
 
             # Remove the specific text from the caption
 
-            caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "")
+            caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "")
+
+            logging.info(f"Modified caption: {caption}")
 
             # Set the new caption for the file
 
