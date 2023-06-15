@@ -1,12 +1,12 @@
 import pyrogram
 
-import os
+# Create a Pyrogram client
 
 bot = pyrogram.Client(
 
     "my_bot",
 
-    api_id="15428219",
+    api_id=15428219,
 
     api_hash="0042e5b26181a1e95ca40a7f7c51eaa7",
 
@@ -14,41 +14,37 @@ bot = pyrogram.Client(
 
 )
 
+# Define the handler for incoming messages
+
 @bot.on_message()
 
-async def handler(bot, message):
+async def handle_message(client, message):
 
     # Check if the message is a file with a caption
 
-    if message.document and message.document.file_name:
+    if message.document and message.document.caption:
 
         # Get the caption of the file
 
-        caption = message.document.file_name
+        caption = message.document.caption
 
-        # Remove the unwanted text from the caption
+        # Check if the specific text is present in the caption
 
-        caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "ᴛʜᴀɴᴋ yᴏᴜ ꜰᴏʀ ꜱᴜᴩᴩᴏʀᴛ</b>")
+        if "✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" in caption:
 
-        
+            # Remove the specific text from the caption
 
-        # Save the document locally
+            caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "")
 
-        file_path = f"temp/{message.document.file_name}"
+            # Set the new caption for the file
 
-        await message.download(file_path)
+            message.document.caption = caption
 
-        
+            # Send the file back to the sender
 
-        # Send the saved file back to the sender
+            await client.send_document(chat_id=message.chat.id, document=message.document)
 
-        await message.reply_document(file_path, caption=caption)
-
-        # Remove the temporary file
-
-        os.remove(file_path)
-
-print("🙌🏻🙌🏻")
+# Start the bot
 
 bot.run()
 
