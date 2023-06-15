@@ -38,7 +38,7 @@ async def handle_message(client, message):
 
         # Check if the specific text is present in the caption
 
-        if "✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" in caption:
+        if "✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" in caption:
 
             # Download the file
 
