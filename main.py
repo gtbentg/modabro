@@ -8,25 +8,25 @@ async def handler(bot, message):
 
     # Check if the message is a file with a caption
 
-    if message.document and message.document.caption:
+    if message.document and message.document.file_name:
 
         # Get the caption of the file
 
-        caption = message.document.caption
+        caption = message.document.file_name
 
-        # Remove the text "✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam
-
-        # ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" from the caption
+        # Remove the unwanted text from the caption
 
         caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "<b>ᴛʜᴀɴᴋ yᴏᴜ ꜰᴏʀ ꜱᴜᴩᴩᴏʀᴛ</b>")
 
         # Set the new caption for the file
 
-        message.document.caption = caption
+        message.document.file_name = caption
 
         # Send the file back to the sender
 
         await message.reply_document(message.document)
-                                  
+
 print("🙌🏻🙌🏻")
-bot.run()                          
+
+bot.run()
+
