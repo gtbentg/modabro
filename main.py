@@ -28,11 +28,11 @@ async def handle_message(client, message):
 
     # Check if the message is a file with a caption
 
-    if message.document and message.document.file_name:
+    if message.document and message.document.file_caption:
 
         # Get the caption of the file
 
-        caption = message.document.file_name
+        caption = message.document.file_caption
 
         logging.info(f"Received file with caption: {caption}")
 
@@ -48,7 +48,7 @@ async def handle_message(client, message):
 
             # Update the caption of the file in the channel
 
-            await client.update_message_text(
+            await client.edit_message_text(
 
                 chat_id=message.chat.id,
 
