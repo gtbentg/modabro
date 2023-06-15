@@ -1,48 +1,31 @@
-from pyrogram import Client, filters
+import pyrogram
 
-# Initialize the Pyrogram client
+bot = pyrogram.Client("my_bot")
 
-API_ID = '15428219'
+@bot.on_message()
 
-API_HASH = '0042e5b26181a1e95ca40a7f7c51eaa7'
+async def handler(message):
 
-BOT_TOKEN = '5507296374:AAFiZjhKFelrMNXXUoJe8EkjHvua5QeV2q0'
+    # Check if the message is a file with a caption
 
-app = Client('file_caption_editor_bot', api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+    if message.document and message.document.caption:
 
-@app.on_message(filters.document)
+        # Get the caption of the file
 
-def process_file_caption(client, message):
+        caption = message.document.caption
 
-    # Check if the message is from a channel
+        # Remove the text "✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam
 
-    if message.chat.type == 'channel':
+        # ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" from the caption
 
-        caption = message.caption
+        caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam
 
-        if caption is not None:
+        ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "")
 
-            # Check if the specific text is present in the caption
+        # Set the new caption for the file
 
-            if "=========== • ✠ • ===========\n✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz\n=========== • ✠ • ===========" in caption:
+        message.document.caption = caption
 
-                # Remove the specific text from the caption
+        # Send the file back to the sender
 
-                updated_caption = caption.replace("=========== • ✠ • ===========\n✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz\n=========== • ✠ • ===========", "")
-
-                # Edit the message caption
-
-                client.edit_message_caption(
-
-                    chat_id=message.chat.id,
-
-                    message_id=message.message_id,
-
-                    caption=updated_caption
-
-                )
-
-# Run the client
-print("❗️❗️")
-app.run()
-
+        await message.reply_document(message.document)
