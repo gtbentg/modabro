@@ -40,19 +40,23 @@ async def handle_message(client, message):
 
         if "✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" in caption:
 
-            # Download the file
-
-            file_path = await message.download()
-
             # Remove the specific text from the caption
 
-            modified_caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "")
+            modified_caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "")
 
             logging.info(f"Modified caption: {modified_caption}")
 
-            # Send the file back with the modified caption
+            # Update the caption of the file in the channel
 
-            await client.send_document(chat_id=message.chat.id, document=file_path, caption=modified_caption)
+            await client.update_message_text(
+
+                chat_id=message.chat.id,
+
+                message_id=message.message_id,
+
+                text=modified_caption
+
+            )
 
 # Start the bot
 
