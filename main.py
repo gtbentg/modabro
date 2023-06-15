@@ -36,7 +36,7 @@ def replace_text(caption):
 
 @client.on_message()
 
-async def handle_message(message):
+async def handle_message(client, message):
 
     # Check if the message is a file with a caption
 
