@@ -1,64 +1,56 @@
 import pyrogram
 
-import logging
+# Get your API ID and hash from https://core.telegram.org/api/obtaining_api_id
 
-# Configure logging
+api_id = "15428219"
 
-logging.basicConfig(level=logging.INFO)
+api_hash = "0042e5b26181a1e95ca40a7f7c51eaa7"
+
+bot_token = "5507296374:AAFiZjhKFelrMNXXUoJe8EkjHvua5QeV2q0"
 
 # Create a Pyrogram client
 
-bot = pyrogram.Client(
+client = pyrogram.Client(
 
     "my_bot",
 
-    api_id="15428219",
+    api_id=api_id,
 
-    api_hash="0042e5b26181a1e95ca40a7f7c51eaa7",
-
-    bot_token="5507296374:AAFiZjhKFelrMNXXUoJe8EkjHvua5QeV2q0"
+    api_hash=api_hash,
+    
+    bot_token=bot_token
 
 )
 
-# Define the handler for incoming messages
+# Define a function that replaces the text "@CinimaAdholokaam" and "@Calinkzz" with "@MovieBossTG" in a caption
 
-@bot.on_message()
+def replace_text(caption):
 
-async def handle_message(client, message):
+    caption = caption.replace("@CinimaAdholokaam", "@MovieBossTG")
+
+    caption = caption.replace("@Calinkzz", "@MovieBossTG")
+
+    return caption
+
+# Listen for messages
+
+@client.on_message()
+
+async def handle_message(message):
 
     # Check if the message is a file with a caption
 
-    if message.document and message.document.file_name:
+    if message.document and message.caption:
 
-        # Get the caption of the file
+        # Replace the text "@CinimaAdholokaam" and "@Calinkzz" with "@MovieBossTG" in the caption
 
-        caption = message.document.file_name
+        caption = replace_text(message.caption)
 
-        logging.info(f"Received file with caption: {caption}")
+        # Send the message back to the user
 
-        # Check if the specific text is present in the caption
+        await message.reply(caption)
 
-        if "✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" in caption:
-
-            # Remove the specific text from the caption
-
-            modified_caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "thanks")
-
-            logging.info(f"Modified caption: {modified_caption}")
-
-            # Update the caption of the file in the channel
-
-            await client.edit_message_text(
-
-                chat_id=message.chat.id,
-
-                message_id=message.message_id,
-
-                text=modified_caption
-
-            )
-
-# Start the bot
-
-bot.run()
+# Run the bot
+print("🙌🏻💝💝🙌🏻")
+client.run()
 
