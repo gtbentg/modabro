@@ -42,7 +42,7 @@ async def handle_message(client, message):
 
             # Remove the specific text from the caption
 
-            modified_caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "")
+            modified_caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam\n✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "thanks")
 
             logging.info(f"Modified caption: {modified_caption}")
 
