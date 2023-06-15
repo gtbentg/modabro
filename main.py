@@ -20,7 +20,7 @@ async def handle_message(client, message):
 
             new_caption = caption.replace("@CinimaAdholokaam", "@MovieBossTG").replace("@Calinkzz", "@MovieBossTG")
 
-            await message.edit(text=f"**{new_caption}**")
+            await message.edit(text=f"<b>{new_caption}</b>")
 
 client.run()
 
