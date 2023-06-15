@@ -18,9 +18,7 @@ async def handler(message):
 
         # ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz" from the caption
 
-        caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam
-
-        ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "")
+        caption = caption.replace("✅ ɢʀᴏᴜᴘ : @CinimaAdholokaam ✅ ᴄʜᴀɴɴᴇʟ : @Calinkzz", "<b>ᴛʜᴀɴᴋ yᴏᴜ ꜰᴏʀ ꜱᴜᴩᴩᴏʀᴛ</b>")
 
         # Set the new caption for the file
 
