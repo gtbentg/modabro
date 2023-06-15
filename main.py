@@ -22,11 +22,11 @@ async def handle_message(client, message):
 
     # Check if the message is a file with a caption
 
-    if message.document and message.document.caption:
+    if message.document and message.document.file_name:
 
         # Get the caption of the file
 
-        caption = message.document.caption
+        caption = message.document.file_name
 
         # Check if the specific text is present in the caption
 
@@ -38,7 +38,7 @@ async def handle_message(client, message):
 
             # Set the new caption for the file
 
-            message.document.caption = caption
+            message.document.file_name = caption
 
             # Send the file back to the sender
 
